@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
+    "@rainbow-me/rainbowkit": "^1.1.1",
+    "@wagmi/core": "^1.4.3",
     "axios": "^1.5.1",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "viem": "^1.16.5",
+    "wagmi": "^1.4.3"
   },
   "devDependencies": {
     "@types/node": "^20",

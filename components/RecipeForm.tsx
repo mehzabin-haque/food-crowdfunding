@@ -1,14 +1,25 @@
-import { useState } from 'react';
-import { Recipe } from '@prisma/client';
-import prisma from '../libs/prisma';
-import axios from 'axios';
+import { useState } from "react";
+import { Recipe } from "@prisma/client";
+import prisma from "../libs/prisma";
+import axios from "axios";
+import recipeContract from "../abi.json";
+
+import {
+  prepareWriteContract,
+  writeContract,
+  waitForTransaction,
+} from "@wagmi/core";
+import { useAccount } from "wagmi";
+
 const RecipeForm = () => {
   const [recipe, setRecipe] = useState({
-    flavors: '',
-    name: '',
-    fundAmount: '',
-    time: '',
+    flavors: "",
+    name: "",
+    fundAmount: "",
+    time: "",
   });
+
+  const { address } = useAccount();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,32 +31,54 @@ const RecipeForm = () => {
     try {
       // You can send the recipe data to your Prisma backend here\
       console.log("hello-----------");
-      const response = await axios.post('/api/recipe', {
-        // method: 'POST',
+      // const response = await axios.post("/api/recipe", {
+      //   // method: 'POST',
 
+      //   name: recipe.name,
+      //   ingredients: recipe.flavors,
+      //   fundAmount: recipe.fundAmount,
+      //   time: recipe.time,
+      // });
 
-        name: recipe.name,
-        ingredients: recipe.flavors,
-        fundAmount: recipe.fundAmount,
-        time: recipe.time,
+      // write nontract data
 
+      // Prepare for transaction
+      const { request } = await prepareWriteContract({
+        abi: recipeContract,
+        address: "0xefa16EC8b5d68533eCa44C66A9Ad4C20426Ed032",
+        functionName: "createRecipe",
+        args: [recipe.name, [recipe.flavors], recipe.fundAmount, recipe.time],
       });
 
+      // Contract write
+      const { hash } = await writeContract(request);
+
+      // Get transaction receipt
+      const receipt = await waitForTransaction({ hash });
+
+      console.log({ receipt });
+
       if (response.status === 200) {
-        console.log('Recipe submitted successfully.');
+        console.log("Recipe submitted successfully.");
       } else {
-        console.error('Recipe submission failed.');
+        console.error("Recipe submission failed.");
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error("An error occurred:", error);
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="w-2/5 mx-auto p-6 bg-white shadow-md rounded-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="w-2/5 mx-auto p-6 bg-white shadow-md rounded-lg"
+      >
         <div className="mb-4">
-          <label htmlFor="flavors" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="flavors"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Flavors
           </label>
           <input
@@ -54,11 +87,14 @@ const RecipeForm = () => {
             name="flavors"
             value={recipe.flavors}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="name"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Recipe Name
           </label>
           <input
@@ -67,11 +103,14 @@ const RecipeForm = () => {
             name="name"
             value={recipe.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="fundAmount" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="fundAmount"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Fund Amount
           </label>
           <input
@@ -80,11 +119,14 @@ const RecipeForm = () => {
             name="fundAmount"
             value={recipe.fundAmount}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="time" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="time"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Time
           </label>
           <input
@@ -93,7 +135,7 @@ const RecipeForm = () => {
             name="time"
             value={recipe.time}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           />
         </div>
         <button
