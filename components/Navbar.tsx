@@ -34,7 +34,7 @@ const Navbar = () => {
         ) : (
           <Link href="/orders">Orders</Link>
         )}
-       <Link href="/recipes"> Upload Recipe</Link>
+       <Link href="/recipe"> Upload Recipe</Link>
       </div>
     </div>
   );
