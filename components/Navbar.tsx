@@ -11,7 +11,7 @@ const Navbar = () => {
       {/* LEFT LINKS */}
       <div className=" md:flex gap-4 flex-1">
         <Link href="/">Homepage </Link>
-        <Link href="/menu" className="px-3">Menu</Link>
+        <Link href="/feature" className="px-3">Items </Link>
         {/* <Link href="/">Contact</Link> */}
       </div>
       {/* LOGO */}
@@ -25,15 +25,16 @@ const Navbar = () => {
       {/* RIGHT LINKS */}
       <div className="hidden md:flex gap-4 items-center justify-end flex-1">
         <div className="md:absolute top-3 r-2 lg:static flex items-center gap-2 cursor-pointer bg-orange-300 px-1 rounded-md">
-          <Image src="/phone.png" alt="" width={20} height={20} />
-          <span>123 456 78</span>
+          <div className="text-md md:font-bold flex-1 md:text-center">
+        <Link href="/offers">Exciting Offers</Link>
+      </div>
         </div>
         {!user ? (
-          <Link href="/login">Login</Link>
+          <Link href="/signin">Signin</Link>
         ) : (
           <Link href="/orders">Orders</Link>
         )}
-        <CartIcon />
+       <Link href="/recipes"> Upload Recipe</Link>
       </div>
     </div>
   );

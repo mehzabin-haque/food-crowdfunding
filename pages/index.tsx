@@ -17,10 +17,13 @@ export default function Home() {
   return (
     <main>
       {/* <Layout> */}
+      <div className='h-screen'>
       <Navbar />
       <Slider/>
-      <Featured/>
-      <Offer/>
+      </div>
+      
+      {/* <Featured/> */}
+      {/* <Offer/> */}
       {/* </Layout> */}
     </main>
   )

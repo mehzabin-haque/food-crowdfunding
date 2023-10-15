@@ -33,7 +33,7 @@ const Slider = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-50">
+    <div className="h-screen flex flex-col w-screen md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-50">
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex items-center justify-center flex-col gap-8 text-red-500 font-bold">
         <h1 className="text-5xl text-center uppercase p-4 md:p-10 md:text-6xl xl:text-7xl">
@@ -55,3 +55,11 @@ const Slider = () => {
 };
 
 export default Slider;
+{/* <div className="w-full flex-1 relative">
+        <Image
+          src={data[currentSlide].image}
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div> */}
