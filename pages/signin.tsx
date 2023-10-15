@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Card, Typography, Input, Button } from '@material-tailwind/react'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
+import Link from 'next/link'
 
 type Props = {
   onButtonClick: () => void
@@ -67,7 +68,8 @@ function Login({ onButtonClick }: Props) {
               </p>
             )}
           </div>
-          <Button
+          
+          <Button 
             type='submit'
             ripple={true}
             className='mt-6 tracking-[2px] text-sm rounded-full'
@@ -77,9 +79,11 @@ function Login({ onButtonClick }: Props) {
           </Button>
           <Typography color='gray' className='mt-4 text-center font-normal'>
             Don't have an account?{' '}
+            <Link href='/signup'>
             <Button onClick={onButtonClick} size='lg' variant='text'>
               Sign Up
             </Button>
+            </Link>
           </Typography>
         </form>
       </Card>
