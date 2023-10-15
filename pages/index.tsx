@@ -16,11 +16,12 @@ export default function Home() {
   const { data: session, status } = useSession()
   return (
     <main>
-      <Layout>
+      {/* <Layout> */}
+      <Navbar />
       <Slider/>
       <Featured/>
       <Offer/>
-      </Layout>
+      {/* </Layout> */}
     </main>
   )
 }
