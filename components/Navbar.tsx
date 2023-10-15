@@ -3,11 +3,15 @@ import Menu from "./Menu";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const user = false;
+  const {data:session,status} = useSession();
+  const user = session?.user;
+
   return (
-    <div className="h-12 font-bold text-red-500 p-4 flex items-center justify-between border-b-2 border-b-red-500 uppercase md:h-24 lg:px-20 xl:px-40">
+    <div className="h-12 font-bold text-sm text-red-500 p-4 flex items-center 
+    justify-between border-b-2 border-b-red-500 uppercase md:h-24 lg:px-20 xl:px-40">
       {/* LEFT LINKS */}
       <div className=" md:flex gap-4 flex-1">
         <Link href="/">Homepage </Link>
@@ -16,7 +20,7 @@ const Navbar = () => {
       </div>
       {/* LOGO */}
       <div className="text-xl md:font-bold flex-1 md:text-center">
-        <Link href="/">FoodCrowd</Link>
+        <Link href="/">FoodieGoodie</Link>
       </div>
       {/* MOBILE MENU */}
       <div className="md:hidden">
@@ -24,17 +28,20 @@ const Navbar = () => {
       </div>
       {/* RIGHT LINKS */}
       <div className="hidden md:flex gap-4 items-center justify-end flex-1">
-        <div className="md:absolute top-3 r-2 lg:static flex items-center gap-2 cursor-pointer bg-red-500 px-2 rounded-md py-1">
+        <div className="md:absolute top-3 r-2 lg:static flex items-center gap-2 
+        cursor-pointer bg-red-500 px-2 rounded-md py-1">
           <div className="text-md text-white md:font-bold flex-1 md:text-center">
             <Link href="/offers">Exciting Offers</Link>
           </div>
         </div>
         {!user ? (
-          <Link href="/signin">Signin</Link>
+          <Link href="/signin">Sign In</Link>
         ) : (
+          <><Link href="/recipe"> Upload Recipe</Link>
           <Link href="/orders">Orders</Link>
+          {/* <Link href="/"> Sign Out </Link> */}
+          </>
         )}
-        <Link href="/recipe"> Upload Recipe</Link>
       </div>
     </div>
   );

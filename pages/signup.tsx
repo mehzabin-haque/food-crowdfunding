@@ -1,6 +1,7 @@
 import { Card, Typography, Input, Button } from '@material-tailwind/react'
 import axios from 'axios'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -12,6 +13,7 @@ function Register({ onButtonClick }: Props) {
   const form = useForm()
   const { register, handleSubmit, formState } = form
   const { errors } = formState
+  const router = useRouter()
 
   const onSubmit = async (data: any) => {
     // if (data.password !== confirmpassword) {
@@ -50,6 +52,7 @@ function Register({ onButtonClick }: Props) {
         //   setRole((session?.user?.role).toLowerCase())
         //   router.push(`/${role}`)
         // }
+        router.push('/')
       }
     ).catch(error =>
       toast.error(error)

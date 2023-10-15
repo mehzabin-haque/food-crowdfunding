@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main>
       {/* <Layout> */}
-      <div className='h-screen tracking-[1px]'>
+      <div className='h-screen '>
         <Navbar />
         <Slider />
       </div>
