@@ -30,7 +30,7 @@
     "autoprefixer": "^10",
     "postcss": "^8",
     "prisma": "^5.4.2",
-    "tailwindcss": "^3",
+    "tailwindcss": "^0.0.0-insiders.44fb67b",
     "typescript": "^5"
   }
 }

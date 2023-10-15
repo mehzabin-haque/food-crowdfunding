@@ -17,11 +17,11 @@ export default function Home() {
   return (
     <main>
       {/* <Layout> */}
-      <div className='h-screen'>
-      <Navbar />
-      <Slider/>
+      <div className='h-screen tracking-[1px]'>
+        <Navbar />
+        <Slider />
       </div>
-      
+
       {/* <Featured/> */}
       {/* <Offer/> */}
       {/* </Layout> */}
