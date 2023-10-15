@@ -14,3 +14,11 @@ model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   // Other fields
 }
+
+model Recipe{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String 
+  ingredients String[]
+  fund_amount Int
+  time DateTime
+}
