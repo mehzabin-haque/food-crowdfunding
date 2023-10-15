@@ -15,3 +15,11 @@ model User {
   email    String @unique
   password String
 }
+
+model Recipe{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String 
+  ingredients String[]
+  fund_amount Int
+  time DateTime
+}
