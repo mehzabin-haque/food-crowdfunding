@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Recipe } from "@prisma/client";
 import prisma from "../libs/prisma";
 import axios from "axios";
 import recipeContract from "../abi.json";
@@ -138,12 +137,14 @@ const RecipeForm = () => {
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none"
-        >
-          Submit
-        </button>
+        <div className="text-center pt-4">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-xl focus:outline-none"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </>
   );
