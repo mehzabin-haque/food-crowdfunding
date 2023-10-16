@@ -4,6 +4,7 @@ import { Card, Typography, Input, Button } from '@material-tailwind/react'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 type Props = {
   onButtonClick: () => void
@@ -13,6 +14,7 @@ function Login({ onButtonClick }: Props) {
   const form = useForm()
   const { register, handleSubmit, formState } = form
   const { errors } = formState
+  const router = useRouter()
 
   const onSubmit = async (data: any) => {
     const res: any =
@@ -27,7 +29,8 @@ function Login({ onButtonClick }: Props) {
     if (res.status !== 200) {
       toast.error("Invalid Credentials")
     }
-    alert('Login Successful')
+    toast.success('Login Successful')
+    router.push('/')
   }
 
   return (

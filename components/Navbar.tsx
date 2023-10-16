@@ -1,12 +1,10 @@
 import React from "react";
 import Menu from "./Menu";
 import Link from "next/link";
-import CartIcon from "./CartIcon";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 const Navbar = () => {
-  const {data:session,status} = useSession();
+  const { data: session, status } = useSession();
   const user = session?.user;
 
   return (
@@ -29,7 +27,7 @@ const Navbar = () => {
       {/* RIGHT LINKS */}
       <div className="hidden md:flex gap-4 items-center justify-end flex-1">
         <div className="md:absolute top-3 r-2 lg:static flex items-center gap-2 
-        cursor-pointer bg-red-500 px-2 rounded-md py-1">
+        cursor-pointer bg-red-500 rounded-md py-2 px-4">
           <div className="text-md text-white md:font-bold flex-1 md:text-center">
             <Link href="/offers">Exciting Offers</Link>
           </div>
@@ -38,8 +36,9 @@ const Navbar = () => {
           <Link href="/signin">Sign In</Link>
         ) : (
           <><Link href="/recipe"> Upload Recipe</Link>
-          <Link href="/orders">Orders</Link>
-          {/* <Link href="/"> Sign Out </Link> */}
+            <Link href="/orders">Orders</Link>
+            <Link href="/recipes">Recipes</Link>
+            <button onClick={() => signOut({ callbackUrl: '/' })} className="bg-red-500 text-white py-2 px-4 rounded-md">Sign Out</button>
           </>
         )}
       </div>

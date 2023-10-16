@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Recipe } from '@prisma/client';
-import prisma from '../libs/prisma';
 import axios from 'axios';
 const RecipeForm = () => {
   const [recipe, setRecipe] = useState({
@@ -21,9 +19,6 @@ const RecipeForm = () => {
       // You can send the recipe data to your Prisma backend here\
       console.log("hello-----------");
       const response = await axios.post('/api/recipe', {
-        // method: 'POST',
-
-
         name: recipe.name,
         ingredients: recipe.flavors,
         fundAmount: recipe.fundAmount,

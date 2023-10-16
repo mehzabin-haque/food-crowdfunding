@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from "../../libs/prisma"
 
 export default async function handler(req: any, res: any) {
   if (req.method === 'POST') {
-    // console.log("hello--+++++++----");
-    const prisma = new PrismaClient();
     try {
       const { name, ingredients, fundAmount, time } = req.body;
 
@@ -23,10 +21,15 @@ export default async function handler(req: any, res: any) {
       res.status(201).json(recipe);
     } catch (error) {
       res.status(500).json({ error: 'Recipe creation failed.' });
-    } finally {
-      await prisma.$disconnect();
     }
-  } else {
-    res.status(405).end(); // Method Not Allowed
+  }
+
+  if (req.method === 'GET') {
+    try {
+      const recipes = await prisma.recipe.findMany();
+      res.status(200).json(recipes);
+    } catch (error) {
+      res.status(500).json({ error: 'Recipe fetching failed.' });
+    }
   }
 }
