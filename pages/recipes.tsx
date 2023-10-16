@@ -23,9 +23,9 @@ export default function Recipes() {
   }, [])
 
   return (
-    <div className="flex h-screen bg-black items-center justify-center space-x-8">
+    <div className="flex flex-wrap h-screen bg-black items-center justify-center gap-8">
       {recipes.map((recipe: any) => (
-        <Card className="mt-6 w-96">
+        <Card className="mt-6 w-96 h-fit">
           <CardBody>
             <Typography variant="h5" color="blue-gray" className="mb-2">
               {recipe.name}
@@ -36,6 +36,8 @@ export default function Recipes() {
           </CardBody>
           <CardFooter className="pt-0">
             Fund: {' '} {recipe.fund_amount}
+            <br />
+            Created at: {' '} {new Date(recipe.time).toLocaleString()}
           </CardFooter>
         </Card>
       ))}

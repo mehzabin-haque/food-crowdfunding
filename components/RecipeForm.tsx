@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 const RecipeForm = () => {
   const [recipe, setRecipe] = useState({
     flavors: '',
@@ -28,6 +29,7 @@ const RecipeForm = () => {
 
       if (response.status === 200) {
         console.log('Recipe submitted successfully.');
+        toast.success('Recipe submitted successfully.');
       } else {
         console.error('Recipe submission failed.');
       }
@@ -37,8 +39,8 @@ const RecipeForm = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="w-2/5 mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className='h-[100vh] flex items-center justify-center'>
+      <form onSubmit={handleSubmit} className="w-2/5 p-6 bg-white shadow-md rounded-lg">
         <div className="mb-4">
           <label htmlFor="flavors" className="block text-gray-700 text-sm font-bold mb-2">
             Flavors
@@ -98,7 +100,7 @@ const RecipeForm = () => {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

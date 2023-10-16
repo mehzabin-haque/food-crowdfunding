@@ -5,7 +5,7 @@ type Props = {}
 
 const recipe = (props: Props) => {
   return (
-    <div className='p-40 bg-gray-100'>
+    <div className='bg-gray-100'>
         <RecipeForm />
     </div>
   )
