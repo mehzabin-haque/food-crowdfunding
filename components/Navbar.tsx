@@ -1,7 +1,9 @@
+'use client'
 import React from "react";
 import Menu from "./Menu";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -12,8 +14,9 @@ const Navbar = () => {
     justify-between border-b-2 border-b-red-500 uppercase md:h-24 lg:px-20 xl:px-40">
       {/* LEFT LINKS */}
       <div className=" md:flex gap-4 flex-1">
-        <Link href="/">Homepage </Link>
+        <Link href="/">Home </Link>
         <Link href="/feature" className="px-3">Items </Link>
+        <ConnectButton />
         {/* <Link href="/">Contact</Link> */}
       </div>
       {/* LOGO */}

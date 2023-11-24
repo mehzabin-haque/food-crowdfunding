@@ -8,7 +8,8 @@ const Featured = () => {
   const fundRaise = () => {
     toast.success("Funds Raised Successfully");
   }
-
+  // const [open, setOpen] = React.useState(false);
+  // findAllRecipesFor();
   
   return (
     <div className="w-screen mx-auto overflow-x-scroll text-black">

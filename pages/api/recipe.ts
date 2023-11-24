@@ -18,7 +18,7 @@ export default async function handler(req: any, res: any) {
           time: new Date(time), // Assuming time is a string representing a valid date
         },
       });
-      res.status(201).json(recipe);
+      res.status(200).json(recipe);
     } catch (error) {
       res.status(500).json({ error: 'Recipe creation failed.' });
     }

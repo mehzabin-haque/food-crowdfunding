@@ -1,0 +1,158 @@
+[
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "_ingredients",
+          "type": "string[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_fundAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_timeForFund",
+          "type": "string"
+        }
+      ],
+      "name": "createRecipe",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "RecipeCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        }
+      ],
+      "name": "sendFunding",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        }
+      ],
+      "name": "withdrawFunding",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllRecipes",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string[]",
+              "name": "ingredients",
+              "type": "string[]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "fundAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "recipeOwnerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "fundRaisedSoFar",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "timeForFund",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct RecipeContract.Recipe[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        }
+      ],
+      "name": "getRecipe",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "ingredients",
+          "type": "string[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fundAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipeOwnerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fundRaisedSoFar",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "timeForFund",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]

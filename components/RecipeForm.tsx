@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 const RecipeForm = () => {
   const [recipe, setRecipe] = useState({
     flavors: '',
@@ -8,6 +9,8 @@ const RecipeForm = () => {
     fundAmount: '',
     time: '',
   });
+
+  const route = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,6 +22,7 @@ const RecipeForm = () => {
     try {
       // You can send the recipe data to your Prisma backend here\
       console.log("hello-----------");
+      
       const response = await axios.post('/api/recipe', {
         name: recipe.name,
         ingredients: recipe.flavors,
@@ -26,10 +30,11 @@ const RecipeForm = () => {
         time: recipe.time,
 
       });
-
+      
       if (response.status === 200) {
-        console.log('Recipe submitted successfully.');
+        
         toast.success('Recipe submitted successfully.');
+        route.push('/');
       } else {
         console.error('Recipe submission failed.');
       }
@@ -43,7 +48,7 @@ const RecipeForm = () => {
       <form onSubmit={handleSubmit} className="w-2/5 p-6 bg-white shadow-md rounded-lg">
         <div className="mb-4">
           <label htmlFor="flavors" className="block text-gray-700 text-sm font-bold mb-2">
-            Flavors
+            Recipe Ingredients (comma separated)
           </label>
           <input
             type="text"
@@ -95,6 +100,7 @@ const RecipeForm = () => {
         </div>
         <button
           type="submit"
+          
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none"
         >
           Submit
